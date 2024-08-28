@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-node_modules
-.env
-=======
-# compiled output
 /dist
 /node_modules
 /build
@@ -58,4 +53,3 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
->>>>>>> 8402c96 (Primeros pasos en el proyecto backend)
