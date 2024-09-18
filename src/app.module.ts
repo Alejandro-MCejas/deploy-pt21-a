@@ -4,10 +4,20 @@ import { Module } from '@nestjs/common';
 import { UsersModule } from './Users/users.module';
 import { ProductsModule } from './Products/products.module';
 import { AuthModule } from './Auth/auth.module';
-import { databaseConfig } from './config/database.config';
+import { globalConfig } from './config/globalconfig.config';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
+import { SeedModule } from './seeds/seeds.module';
+
+
+
 
 @Module({
-  imports: [UsersModule, ProductsModule, AuthModule, databaseConfig],
+  imports: [globalConfig,
+    TypeOrmModule.forRootAsync({
+      inject: [ConfigService],
+      useFactory: (config: ConfigService) => config.get('postgres')
+    }), UsersModule, ProductsModule, AuthModule, SeedModule],
   controllers: [],
   providers: [],
 })

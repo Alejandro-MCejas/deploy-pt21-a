@@ -6,20 +6,13 @@ import { UpdateProductDto } from "./dto/updateProduct.dto";
 import { AuthGuard } from "src/Auth/AuthGuard.guard";
 
 
-
-
-
-
 @Controller('products')
 export class ProductsController {
     constructor(private readonly productsService: ProductsService) { }
 
     @Get()
-    async getProductsController(@Query('page') page: string = '1', @Query('limit') limit: string = '5', @Res() res: Response) {
-        const pageNumber = parseInt(page)
-        const limitNumber = parseInt(limit)
-        
-        const products = await this.productsService.getProductsService(pageNumber, limitNumber)
+    async getProductsController(@Query('page') page: number = 1, @Query('limit') limit: number = 5, @Res() res: Response) {
+        const products = await this.productsService.getProductsService(page, limit)
         return res.status(200).json(products)
     }
 
