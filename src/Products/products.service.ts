@@ -56,7 +56,6 @@ export class ProductsService {
         return productToDelete
     }
 
-    // cambios en a funcion de abajo
     async getProductsWithStockService(productsIds: Array<ProductId>) {
 
         return await this.productsRepository.find({
@@ -70,7 +69,6 @@ export class ProductsService {
         
     }
 
-    // nueva funcion añadida, buyProduct eliminada
     async reduceProductStockService(id: string){
         const product = await this.getProductByIdService(id)
 
