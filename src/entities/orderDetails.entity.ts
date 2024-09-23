@@ -5,13 +5,13 @@ import { Products } from "./products.entity";
 
 
 
-@Entity({name: 'orderDetails'})
+@Entity({ name: 'orderDetails' })
 export class OrderDetails {
 
     @PrimaryGeneratedColumn('uuid')
     id: string
 
-    @Column({type: 'decimal', precision: 10, scale: 2, nullable: false})
+    @Column({ type: 'decimal', precision: 10, scale: 2, nullable: false })
     price: number
 
     @OneToOne(() => Orders, order => order.orderDetails)
