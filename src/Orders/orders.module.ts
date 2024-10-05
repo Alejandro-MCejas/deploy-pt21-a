@@ -11,12 +11,14 @@ import { ProductsModule } from "src/Products/products.module";
 import { UsersService } from "src/Users/users.service";
 import { ProductsService } from "src/Products/products.service";
 import { OrderDetailService } from "src/order-detail/order-detail.service";
+import { SharedModule } from "src/shared-module/shared-module.module";
 
 
 
 
 @Module({
     imports: [TypeOrmModule.forFeature([Orders, Users, OrderDetails, Products]),
+        SharedModule,
         UsersModule,
         ProductsModule
     ],

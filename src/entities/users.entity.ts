@@ -1,5 +1,6 @@
 import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Orders } from "./orders.entity";
+import { UserRole } from "../Users/enum/role.enum";
 
 
 @Entity({ name: 'users' })
@@ -14,7 +15,7 @@ export class Users {
     @Column({ type: 'varchar', length: 50, unique: true, nullable: false })
     email: string
 
-    @Column({type: 'varchar', length: 20, nullable: false})
+    @Column({type: 'varchar', nullable: false})
     password: string
 
     @Column({type: 'varchar'})
@@ -31,4 +32,7 @@ export class Users {
 
     @OneToMany(() => Orders, order => order.user)
     orders: Orders[]
+
+    @Column({type: 'enum', enum: UserRole, default: UserRole.USER})
+    admin: UserRole
 }

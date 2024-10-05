@@ -4,11 +4,24 @@ import { AppModule } from './app.module';
 import { loggerGlobal } from './middlewares/loggerGlobal.middleware';
 import { CategoriesSeed } from './seeds/categories/categories.seed';
 import { ProductsSeed } from './seeds/products/products.seed';
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { UsersSeed } from './seeds/users/users.seed';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalPipes(new ValidationPipe());
   app.use(loggerGlobal);
+
+  const swaggerConfig = new DocumentBuilder()
+    .setTitle('Nest API Ecommerce')
+    .setDescription('App Demo para el M4 Backend')
+    .setVersion('1.0')
+    .addBearerAuth()
+    .build();
+
+  const document = SwaggerModule.createDocument(app, swaggerConfig);
+  SwaggerModule.setup('API', app, document);
+
   const categoriesSeed = app.get(CategoriesSeed)
   await categoriesSeed.seedCategories()
   console.log('Categories seeded');
@@ -16,8 +29,12 @@ async function bootstrap() {
   const productsSeed = app.get(ProductsSeed)
   await productsSeed.seedProducts()
   console.log('Products seeded');
+
+  const usersSeed = app.get(UsersSeed)
+  await usersSeed.seedUsers()
+  console.log('Users seeded');
   
-  
+
   await app.listen(3000);
 }
 bootstrap();

@@ -1,36 +1,38 @@
-
-import { CanActivate, ExecutionContext, HttpException, HttpStatus, Injectable } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import { Request } from "express";
-import { Observable } from "rxjs";
+
 
 
 @Injectable()
 export class AuthGuard implements CanActivate {
-    canActivate(context: ExecutionContext): boolean | Promise<boolean> | Observable<boolean> {
+    constructor(private readonly jwtService: JwtService){}
+    async canActivate(context: ExecutionContext): Promise<boolean> {
         const request: Request = context.switchToHttp().getRequest();
 
-        const authHeader = request.header('Authorization');
-        if (!authHeader) {
-            throw new HttpException('Not authorized', HttpStatus.UNAUTHORIZED);
-        }
-        
-        
-        const [type, credentials] = authHeader.split(' ');
+        const token = this.extractTokenFromHeader(request)
 
-        if (type !== 'Basic' || !credentials) {
-            throw new HttpException('Not authorized', HttpStatus.UNAUTHORIZED);
+        if(!token){
+            throw new UnauthorizedException('Token no encontrado')
         }
 
-        const decodedCredentials = Buffer.from(credentials, 'base64').toString('utf-8')
-
-        const [email, password] = decodedCredentials.split(':')
-
-        if (!email || !password) {
-            throw new HttpException('Not authorized', HttpStatus.UNAUTHORIZED);
+        
+        try {            
+            const payload = await this.jwtService.verifyAsync(token)
+            console.log(payload)
+            request['user'] = payload
+        } catch (error) {
+            console.log(error)
+            throw new UnauthorizedException('Token no valido')
         }
         
 
         return true
+    }
+
+    private extractTokenFromHeader(request: Request){
+        const [type, token] = request.headers.authorization?.split(' ') ?? []
+        return type === 'Bearer' ? token : undefined
     }
 
 }

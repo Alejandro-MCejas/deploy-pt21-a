@@ -2,13 +2,15 @@ import { Injectable } from "@nestjs/common";
 import { CreateProductDto } from "./dto/createProduct.dto";
 import { UpdateProductDto } from "./dto/updateProduct.dto";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Products } from "src/entities/products.entity";
+import { Products } from "../entities/products.entity";
 import { In, MoreThan, Repository } from "typeorm";
-import { ProductId } from "src/Orders/dto/createOrder.dto";
+import { ProductId } from "../Orders/dto/createOrder.dto";
+
 
 @Injectable()
 export class ProductsService {
-    constructor(@InjectRepository(Products) private readonly productsRepository: Repository<Products>) { }
+    constructor(@InjectRepository(Products) private readonly productsRepository: Repository<Products>
+    ) { }
 
     async getProductsService(page: number, limit: number) {
         const products = await this.productsRepository.find({
@@ -66,25 +68,34 @@ export class ProductsService {
             select: ['id', 'price', 'stock']
         })
 
-        
+
     }
 
-    async reduceProductStockService(id: string){
+    async reduceProductStockService(id: string) {
         const product = await this.getProductByIdService(id)
 
-        if(!product){
+        if (!product) {
             throw new Error('El producto no existe')
         }
 
-        if(product.stock === 0){
+        if (product.stock === 0) {
             throw new Error('El producto no tiene stock')
         }
 
         await this.productsRepository.update(id, {
             stock: product.stock - 1
         })
-        
+
     }
-    
+
+    async uploadImageService(id: string, url: string) {
+        const product = await this.productsRepository.findOneBy({ id: id })
+
+        if (!product) {
+            throw new Error('El producto no existe')
+        }
+        product.imgUrl = url
+        return await this.productsRepository.save(product)
+    }
 
 }

@@ -27,8 +27,6 @@ export class Products {
     @ManyToOne(() => Categories, category => category.products) 
     category: Categories
 
-    //Armar relacion N:N con orderDetails
-
     @ManyToMany(() => OrderDetails, orderDetail => orderDetail.products)
     @JoinTable()
     orderDetails: OrderDetails[]

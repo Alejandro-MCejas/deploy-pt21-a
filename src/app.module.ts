@@ -10,7 +10,8 @@ import { ConfigService } from '@nestjs/config';
 import { SeedModule } from './seeds/seeds.module';
 import { OrderDetailModule } from './Order-detail/order-detail.module';
 import { OrdersModule } from './Orders/orders.module';
-
+import { FileUploadModule } from './file-upload/file-upload.module';
+import { SharedModule } from './shared-module/shared-module.module';
 
 
 
@@ -19,7 +20,7 @@ import { OrdersModule } from './Orders/orders.module';
     TypeOrmModule.forRootAsync({
       inject: [ConfigService],
       useFactory: (config: ConfigService) => config.get('postgres')
-    }), UsersModule, ProductsModule, AuthModule, SeedModule, OrderDetailModule, OrdersModule],
+    }), UsersModule, ProductsModule, AuthModule, SeedModule, OrderDetailModule, OrdersModule, FileUploadModule, SharedModule],
   controllers: [],
   providers: [],
 })

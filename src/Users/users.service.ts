@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { CreateUserDto } from "./dto/createUser.dto";
 import { UpdateUserDto } from "./dto/updateUser.dto";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Users } from "src/entities/users.entity";
+import { Users } from "../entities/users.entity";
 import { Repository } from "typeorm";
 
 
@@ -15,7 +15,7 @@ export class UsersService {
         const user = await this.usersRepository.find({
             skip: (page - 1) * limit,
             take: limit,
-            select: ['id', 'email', 'name', 'address', 'phone', 'country', 'city'],
+            select: ['id', 'email', 'name', 'address', 'phone', 'country', 'city', 'admin'],
         })
 
         return user
