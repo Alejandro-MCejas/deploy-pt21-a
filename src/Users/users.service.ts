@@ -56,8 +56,9 @@ export class UsersService {
     }
 
     async findUserByEmailService(email: string) {
+        console.log('EMAIL DEL USUARIO QUE SE BUSCA ', email);
         return await this.usersRepository.findOne({
-            where: { email: email },
+            where: { email },
         })
     }
 

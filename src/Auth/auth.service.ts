@@ -1,9 +1,9 @@
 import { Injectable, UnauthorizedException } from "@nestjs/common";
-import { UsersService } from "src/Users/users.service";
+import { UsersService } from "../Users/users.service";
 import { SignUpDto } from "./dto/SignUp.dto";
 import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from 'bcrypt'
-import { Users } from "src/entities/users.entity";
+import { Users } from "../entities/users.entity";
 
 
 @Injectable()
@@ -15,7 +15,10 @@ export class AuthService {
 
     async signInService(email: string, password: string) {
 
+        
+        
         const user = await this.usersService.findUserByEmailService(email)
+        console.log('HOLA DESDE EL SERVICE signinService AL TESTEAR ', user);
 
         if(!user) {
             throw new UnauthorizedException('Email o contraseña incorrectos')
@@ -28,6 +31,7 @@ export class AuthService {
         }
         
         const token = await this.createToken(user)
+        
         return { token }
 
         // if (!user || user.password !== password) {

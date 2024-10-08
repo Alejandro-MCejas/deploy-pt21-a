@@ -6,7 +6,7 @@ import { CreateOrderDto } from "./dto/createOrder.dto";
 import { UsersService } from "src/Users/users.service";
 import { ProductsService } from "src/Products/products.service";
 import { CreateOrderDetailDto } from "src/Order-detail/dto/createOrderDetail.dto";
-import { OrderDetailService } from "src/order-detail/order-detail.service";
+import { OrderDetailService } from "src/Order-detail/order-detail.service";
 
 
 

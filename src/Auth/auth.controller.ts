@@ -21,6 +21,7 @@ export class AuthController {
         // }
 
         // return { message: "Login correcto" }
+        console.log('HOLA DESDE EL CONTROLLER AL TESTEAR')
 
         return await this.authService.signInService(user.email, user.password)
     }

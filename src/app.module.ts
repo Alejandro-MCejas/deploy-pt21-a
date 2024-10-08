@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
-// import { AppController } from './app.controller';
-// import { AppService } from './app.service';
+import { AppController } from './app.controller';
+import { AppService } from './app.service';
 import { UsersModule } from './Users/users.module';
 import { ProductsModule } from './Products/products.module';
 import { AuthModule } from './Auth/auth.module';
@@ -21,7 +21,7 @@ import { SharedModule } from './shared-module/shared-module.module';
       inject: [ConfigService],
       useFactory: (config: ConfigService) => config.get('postgres')
     }), UsersModule, ProductsModule, AuthModule, SeedModule, OrderDetailModule, OrdersModule, FileUploadModule, SharedModule],
-  controllers: [],
-  providers: [],
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class AppModule { }
