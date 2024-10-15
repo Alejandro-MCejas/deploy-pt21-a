@@ -5,9 +5,6 @@ import { UsersModule } from "src/Users/users.module";
 import { SharedModule } from "src/shared-module/shared-module.module";
 
 
-
-
-
 @Module({
     imports: [UsersModule, SharedModule],
     controllers: [AuthController],
@@ -16,4 +13,3 @@ import { SharedModule } from "src/shared-module/shared-module.module";
 })
 
 export class AuthModule { }
-

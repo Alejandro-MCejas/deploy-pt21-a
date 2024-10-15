@@ -23,11 +23,11 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     "@typescript-eslint/no-unused-vars": "off",
     'prettier/prettier': [
-      'off',  // Cambia a 'warn' o 'off' para reducir la severidad.
+      'off',  
       {
         endOfLine: 'lf',
         trailingComma: 'es5',
-        bracketSpacing: true, // Ajusta como Prettier maneja los espacios en los objetos
+        bracketSpacing: true, 
       },
     ],
   },

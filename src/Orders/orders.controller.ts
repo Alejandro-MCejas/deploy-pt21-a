@@ -9,8 +9,7 @@ import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 @Controller('orders')
 export class OrdersController { 
     constructor(private readonly ordersService: OrdersService){}
-    
-    
+        
     @Post()
     @UseGuards(AuthGuard)
     async createOrder(@Body() order: CreateOrderDto) {
@@ -18,7 +17,6 @@ export class OrdersController {
 
     }
 
-    
     @Get(':id')
     @UseGuards(AuthGuard)
     async getOrder(@Param('id', new ParseUUIDPipe()) id: string){

@@ -6,7 +6,6 @@ import { Products } from 'src/entities/products.entity';
 import { CloudinaryService } from 'src/cloudinary/cloudinary.service';
 import { SharedModule } from 'src/shared-module/shared-module.module';
 
-
 @Module({
     imports: [TypeOrmModule.forFeature([Products]), SharedModule],
     controllers: [ProductsController],

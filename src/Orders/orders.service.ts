@@ -9,7 +9,6 @@ import { CreateOrderDetailDto } from "src/Order-detail/dto/createOrderDetail.dto
 import { OrderDetailService } from "src/Order-detail/order-detail.service";
 
 
-
 @Injectable()
 export class OrdersService {
     constructor(@InjectRepository(Orders) private readonly ordersRepository: Repository<Orders>,
@@ -60,7 +59,6 @@ export class OrdersService {
         orderDetail.products = productsWithStock
         
         
-
         const newOrderDetail = await this.orderDetailService.createOrderDetailService(orderDetail)
 
         const orderResponse = {
@@ -74,8 +72,6 @@ export class OrdersService {
         }
 
         return orderResponse
-
-
     }
 
     private async calculateTotal(products: Array<{ id: string, price: number, stock: number }>) {
@@ -104,7 +100,5 @@ export class OrdersService {
         }
 
         return orderResponse
-   
     }
-
 }

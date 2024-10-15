@@ -3,9 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Users } from "src/entities/users.entity";
 import { Repository } from "typeorm";
 import { usersMock } from "./users-mock";
-import * as bcrypt from 'bcrypt'
-
-
+import * as bcrypt from 'bcryptjs'
 
 
 @Injectable()
@@ -18,7 +16,6 @@ export class UsersSeed {
         for (const user of usersMock) {
             const existingUser = await this.usersRepository.findOne({ where: { email: user.email } })
 
-
             if (!existingUser) {
                 const hashedPassword = await bcrypt.hash(user.password, 10)
 
@@ -27,9 +24,6 @@ export class UsersSeed {
                     password: hashedPassword
                 })
             }
-
-
         }
     }
-
 }

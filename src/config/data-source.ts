@@ -1,9 +1,4 @@
 import { registerAs } from "@nestjs/config";
-// import { Users } from "src/entities/users.entity";
-// import { Products } from "src/entities/products.entity";
-// import { Categories } from "src/entities/categories.entity";
-// import { Orders } from "src/entities/orders.entity";
-// import { OrderDetails } from "src/entities/orderDetails.entity";
 import * as dotenv from 'dotenv'
 import { DataSource, DataSourceOptions } from "typeorm";
 

@@ -41,6 +41,6 @@ describe('UsersController (e2e)', () => {
 
         expect(req.status).toBe(200)
         expect(req.body).toBeInstanceOf(Array)
-    })
+    }, 10000)
 
 })

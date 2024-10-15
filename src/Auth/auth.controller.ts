@@ -21,7 +21,6 @@ export class AuthController {
         // }
 
         // return { message: "Login correcto" }
-        console.log('HOLA DESDE EL CONTROLLER AL TESTEAR')
 
         return await this.authService.signInService(user.email, user.password)
     }
@@ -31,7 +30,6 @@ export class AuthController {
         if(user.password !== user.confirmPassword){
             throw new BadRequestException('Las contraseñas no coinciden')
         }
-
 
         return await this.authService.signUpService(user)
     }

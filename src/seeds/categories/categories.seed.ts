@@ -5,7 +5,6 @@ import { In, Repository } from "typeorm";
 import { categoriesMock } from "./categories-mock";
 
 
-
 @Injectable()
 export class CategoriesSeed {
     constructor(@InjectRepository(Categories) private readonly categoriesRepository: Repository<Categories>) { }

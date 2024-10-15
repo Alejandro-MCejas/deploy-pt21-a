@@ -1,16 +1,17 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Put, Query, Res, UseGuards } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { Response } from "express";
-// import { CreateUserDto } from "./dto/createUser.dto";
 import { UpdateUserDto } from "./dto/updateUser.dto";
 import { AuthGuard } from "src/Auth/AuthGuard.guard";
 import { RoleGuard } from "./RoleGuard.guard";
 import { Roles } from "src/decorators/roles.decorator";
 import { UserRole } from "./enum/role.enum";
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiExtraModels, ApiTags } from "@nestjs/swagger";
+import { Users } from "src/entities/users.entity";
 
 
 @ApiTags('Users')
+@ApiExtraModels(Users)
 @Controller('users')
 export class UsersController {
     constructor(private readonly usersService: UsersService) { }
@@ -53,8 +54,5 @@ export class UsersController {
     async deleteUserController(@Param('id', new ParseUUIDPipe()) id: string, @Res() res: Response) {
         const deletedUser = await this.usersService.deleteUserService(id)
         return res.status(200).json({ message: `El usuario con el id ${deletedUser.id} ha sido eliminado` })
-
     }
-
-
 }

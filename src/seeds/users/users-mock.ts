@@ -12,7 +12,6 @@ export const usersMock = [
         "admin": UserRole.USER
     },
 
-
     {
         "name": "Alejandro Admin",
         "email": "admin@gmail.com",

@@ -5,6 +5,7 @@ import { IsString, IsNotEmpty, IsEmail, Matches, Length, IsNumberString, IsOptio
 
 export class SignUpDto {
     @ApiProperty({
+        description: 'The name of the user',
         example: 'Alejandro Cejas',
     })
     @IsString()
@@ -13,12 +14,14 @@ export class SignUpDto {
     name: string
 
     @ApiProperty({
+        description: 'The email of the user',
         example: 'ale@gmail.com',
     })
     @IsEmail()
     email: string
 
     @ApiProperty({
+        description: 'The password of the user',
         example: 'Alejandro123@'
     })
     @IsString()
@@ -26,6 +29,7 @@ export class SignUpDto {
     password: string
 
     @ApiProperty({
+        description: 'The confirm password of the user',
         example: 'Alejandro123@'
     })
     @IsNotEmpty()
@@ -33,6 +37,7 @@ export class SignUpDto {
     confirmPassword: string
 
     @ApiProperty({
+        description: 'The address of the user',
         example: 'Cordoba 530'
     })
     @IsString()
@@ -40,6 +45,7 @@ export class SignUpDto {
     address: string
 
     @ApiProperty({
+        description: 'The phone of the user',
         example: '32894732784'
     })
     @IsNumberString()
@@ -47,6 +53,7 @@ export class SignUpDto {
     phone: string
 
     @ApiProperty({
+        description: 'The country of the user',
         example: 'Argentina'
     })
     @IsOptional()
@@ -55,6 +62,7 @@ export class SignUpDto {
     country?: string
 
     @ApiProperty({
+        description: 'The city of the user',
         example: 'Cordoba'
     })
     @IsOptional()

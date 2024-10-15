@@ -8,8 +8,6 @@ import { Users } from "src/entities/users.entity";
 import { UsersSeed } from "./users/users.seed";
 
 
-
-
 @Module({
     imports: [TypeOrmModule.forFeature([Categories, Products, Users])],
     providers: [CategoriesSeed, ProductsSeed, UsersSeed],

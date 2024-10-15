@@ -2,8 +2,6 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { FileUploadController } from './file-upload.controller';
 import { FileUploadService } from './file-upload.service';
 import { JwtService } from '@nestjs/jwt';
-import { AuthGuard } from 'src/Auth/AuthGuard.guard';
-import { RoleGuard } from 'src/Users/RoleGuard.guard';
 
 describe('FileUploadController', () => {
   let controller: FileUploadController;
