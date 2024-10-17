@@ -22,6 +22,7 @@ export const dataSourceOptions: DataSourceOptions = {
     ssl: {
         rejectUnauthorized: false
     }
+    // Probando
 }
 
 export const postgresDataSourceConfig = registerAs('postgres', () => dataSourceOptions)
